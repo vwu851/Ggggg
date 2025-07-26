@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>مقالة شيقة</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           line-height: 1.6;
+           margin: 0;
+           padding: 20px;
+           background-color: #f4f4f4;
+       }
+       .container {
+           max-width: 800px;
+           margin: auto;
+           background: #fff;
+           padding: 20px;
+           border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0,0,0,0.1);
+       }
+       h1 {
+           color: #333;
+           text-align: center;
+       }
+       p {
+           margin-bottom: 20px;
+           text-align: right;
+       }
+       .button {
+           display: block;
+           width: 150px;
+           margin: 30px auto;
+           background: #ff5722;
+           color: #fff;
+           padding: 12px 25px;
+           text-align: center;
+           text-decoration: none;
+           border-radius: 30px;
+           cursor: pointer;
+           font-weight: bold;
+           box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+           transition: all 0.3s ease;
+       }
+       .button:hover {
+           background: #e64a19;
+           transform: translateY(-2px);
+           box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+       }
+       .countdown {
+           text-align: center;
+           font-size: 18px;
+           color: #ff5722;
+           margin-top: 10px;
+           font-weight: bold;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <h1>أهمية الذكاء الاصطناعي في العصر الحديث</h1>
+       <p>الذكاء الاصطناعي (AI) هو أحد أهم التطورات التكنولوجية في عصرنا. فهو يغير طريقة عملنا وعيشنا وتفاعلنا مع العالم. في هذه المقالة، سنستكشف كيف يؤثر الذكاء الاصطناعي على مختلف الصناعات.</p>
+       <p>من الرعاية الصحية إلى النقل، ومن التصنيع إلى الترفيه، الذكاء الاصطناعي يحدث ثورة في كل مجال. على سبيل المثال، في الرعاية الصحية، يمكن للذكاء الاصطناعي المساعدة في تشخيص الأمراض بدقة أكبر وفي وقت أقصر.</p>
+       <p>ولكن مع هذه الفرص تأتي تحديات أخلاقية واجتماعية. كيف يمكننا ضمان أن الذكاء الاصطناعي يستخدم لصالح البشرية؟ وكيف نضمن الشفافية والعدالة في أنظمته؟</p>
+       
+       <p style="text-align: center;">لمعرفة المزيد، شاهد الفيديو التالي:</p>
+       <button class="button" onclick="redirectToVideo()">شاهد الفيديو</button>
+       <div class="countdown" id="countdown">سيتم التوجيه تلقائياً خلال: 20 ثانية</div>
+   </div>
+
+   <script>
+       // تهيئة العد التنازلي
+       let seconds = 20;
+       const countdownElement = document.getElementById('countdown');
+       
+       const countdownInterval = setInterval(() => {
+           seconds--;
+           countdownElement.textContent = `سيتم التوجيه تلقائياً خلال: ${seconds} ثانية`;
+           
+           if (seconds <= 0) {
+               clearInterval(countdownInterval);
+           }
+       }, 1000);
+
+       // حركات الماوس العشوائية لتظهر كأن المستخدم حقيقي
+       document.addEventListener('mousemove', function(e) {
+           // يمكننا تسجيل حركات الماوس لكن لا نستخدمها هنا
+       });
+
+       // بعد 20 ثانية، يتم التوجيه تلقائياً
+       setTimeout(function() {
+           redirectToVideo();
+       }, 20000);
+
+       function redirectToVideo() {
+           clearInterval(countdownInterval);
+           // إضافة حركة ماوس عشوائية قبل التوجيه
+           moveMouseRandomly(() => {
+               // توجيه المستخدم إلى فيديو اليوتيوب
+               window.location.href = "https://youtu.be/C_6Q56Ri8yg?feature=shared";
+           });
+       }
+
+       function moveMouseRandomly(callback) {
+           let x = window.innerWidth / 2;
+           let y = window.innerHeight / 2;
+           let steps = 20;
+           let step = 0;
+
+           function move() {
+               if (step >= steps) {
+                   callback();
+                   return;
+               }
+
+               x += (Math.random() - 0.5) * 100;
+               y += (Math.random() - 0.5) * 100;
+
+               // التأكد من أن الماوس داخل الشاشة
+               x = Math.max(0, Math.min(window.innerWidth, x));
+               y = Math.max(0, Math.min(window.innerHeight, y));
+
+               // إنشاء حدث حركة ماوس
+               const event = new MouseEvent('mousemove', {
+                   clientX: x,
+                   clientY: y,
+                   bubbles: true,
+                   cancelable: true,
+                   view: window
+               });
+
+               document.dispatchEvent(event);
+
+               step++;
+               setTimeout(move, 100);
+           }
+
+           move();
+       }
+   </script>
+</body>
+</html>
